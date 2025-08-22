@@ -98,6 +98,7 @@ nginx-api-shield/
 
 ### 1. Start the Complete Stack
 ```bash
+docker-compose build 
 docker-compose up -d
 ```
 
@@ -105,7 +106,7 @@ This starts:
 - Nginx Auth Proxy on port 8080
 - Redis Key Manager on port 3000
 - Redis database on port 6379
-- Sample backend service on port 8081
+- Sample protected backend service (hello-world)
 
 ### 2. Access the Services
 - **Key Manager**: http://localhost:3000
@@ -119,7 +120,8 @@ This starts:
 
 ### 4. Test Authentication
 ```bash
-curl -H "api-key: YOUR_API_KEY" http://localhost:8080
+curl localhost:8080 -H "Authorization: Bearer YOUR_API_KEY"
+
 ```
 
 ## 🔒 Security Features

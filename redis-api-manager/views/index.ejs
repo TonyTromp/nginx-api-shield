@@ -43,9 +43,23 @@
         // Generate a time-based UUID and set it as default value
         function generateTimeBasedUUID() {
             const timestamp = Date.now();
+            // Hash the timestamp using a simple hash function
+            const hashedTimestamp = hashString(timestamp.toString());
             const randomPart = Math.random().toString(36).substring(2, 15);
-            const uuid = `${timestamp}-${randomPart}`;
+            const uuid = `sk_${randomPart}-${hashedTimestamp}`;
             return uuid;
+        }
+
+        // Simple hash function for the timestamp
+        function hashString(str) {
+            let hash = 0;
+            if (str.length === 0) return hash.toString();
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // Convert to 32-bit integer
+            }
+            return Math.abs(hash).toString(36);
         }
 
         // Set the default value when the page loads

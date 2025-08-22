@@ -7,7 +7,7 @@ This repository contains two complementary projects that work together to provid
 ## 🚀 Projects Overview
 
 ### 1. Nginx API Shield (`nginx-api-shield`)
-A high-performance reverse proxy with built-in API key authentication using OpenResty (Nginx + Lua) and Redis.
+A high-performance reverse proxy with built-in Bearer Token API key authentication using OpenResty (Nginx + Lua) and Redis.
 
 ### 2. Redis Key Manager (`redis-api-manager`)
 A web-based management interface for creating, viewing, and managing API keys stored in Redis.
@@ -52,7 +52,7 @@ nginx-api-shield/
 ##  Nginx API Shield
 
 ### Features
-- **API Key Authentication**: Validates API keys against Redis before proxying requests
+- **Bearer Token Authentication**: Validates API keys against Redis before proxying requests
 - **High Performance**: Built on OpenResty (Nginx + Lua) for optimal performance
 - **Redis Integration**: Uses Redis as the backend for API key storage
 - **Flexible Backend**: Can proxy to any backend service

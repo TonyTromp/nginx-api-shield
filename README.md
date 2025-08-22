@@ -1,12 +1,12 @@
 ![Redis Key Manager](images/redis-keymanager.png)
 
-# Nginx Auth Proxy & Redis Key Manager
+# Nginx API Shield & Redis Key Manager
 
 This repository contains two complementary projects that work together to provide API key authentication for web services:
 
 ## 🚀 Projects Overview
 
-### 1. Nginx Auth Proxy (`nginx-authproxy`)
+### 1. Nginx API Shield (`nginx-api-shield`)
 A high-performance reverse proxy with built-in API key authentication using OpenResty (Nginx + Lua) and Redis.
 
 ### 2. Redis Key Manager (`redis-api-manager`)
@@ -16,8 +16,8 @@ A web-based management interface for creating, viewing, and managing API keys st
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Client App    │───▶│  Nginx Auth     │───▶│  Backend       │
-│   (with API    │    │  Proxy          │    │  Service       │
+│   Client App    │───▶│  Nginx API      │───▶│  Backend       │
+│   (with API    │    │  Shield         │    │  Service       │
 │    key)        │    │                 │    │                │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
                                 │
@@ -37,7 +37,7 @@ A web-based management interface for creating, viewing, and managing API keys st
 ## 📁 Project Structure
 
 ```
-nginx-authproxy/
+nginx-api-shield/
 ├── docker-compose.yaml      # Main orchestration
 ├── Dockerfile              # Nginx + OpenResty build
 ├── nginx.conf              # Nginx configuration with Lua auth
@@ -49,7 +49,7 @@ nginx-authproxy/
 └── README.md               # This file
 ```
 
-##  Nginx Auth Proxy
+##  Nginx API Shield
 
 ### Features
 - **API Key Authentication**: Validates API keys against Redis before proxying requests
@@ -158,7 +158,7 @@ REDIS_HOST=localhost npm start
 docker-compose logs -f
 
 # View specific service logs
-docker-compose logs -f nginx
+docker-compose logs -f nginx-api-shield
 docker-compose logs -f redis-api-manager
 ```
 

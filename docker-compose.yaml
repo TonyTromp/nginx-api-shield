@@ -8,15 +8,23 @@ services:
       - "8080:80"
     environment:
       - REDIS_HOST=redis
+      - PROTECTED_UPSTREAM=hello-world:80
       - DNS_RESOLVER=127.0.0.11
     depends_on:
       - redis
 
-  hello-world:
-    image: lmmendes/http-hello-world
-    container_name: hello-world
+  apikey-manager:
+    build: ./redis-api-manager
+    container_name: apikey-manager
     ports:
-      - "8081:80"
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
+    restart: unless-stopped
 
   redis:
     image: redis:alpine
@@ -24,4 +32,10 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - redis_data:/data
+      - ./redis_data:/data
+  
+  # this is the backend service that will be protected by the api key
+  # note that we do not expose any ports. all is configure by PROTECTED_UPSTREAM
+  hello-world:
+    image: lmmendes/http-hello-world
+    container_name: hello-world

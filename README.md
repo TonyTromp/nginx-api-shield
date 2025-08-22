@@ -1,4 +1,4 @@
-![Redis Key Manager](images/redis-keymanager.png)
+![Redis Key Manager](images/redis-keymanager2.png)
 
 # Nginx API Shield & Redis Key Manager
 

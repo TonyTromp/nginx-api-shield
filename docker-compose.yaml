@@ -1,0 +1,27 @@
+version: '3'
+services:
+  nginx:
+    build: .
+    container_name: nginx
+    image: nginx-authproxy
+    ports:
+      - "8080:80"
+    environment:
+      - REDIS_HOST=redis
+      - DNS_RESOLVER=127.0.0.11
+    depends_on:
+      - redis
+
+  hello-world:
+    image: lmmendes/http-hello-world
+    container_name: hello-world
+    ports:
+      - "8081:80"
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data

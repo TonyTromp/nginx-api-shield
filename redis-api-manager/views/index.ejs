@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Key Manager</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body class="container py-5">
+    <h1 class="mb-4">Redis API Key Manager</h1>
+
+    <form action="/add-key" method="POST" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="apiKey" id="apiKeyInput" class="form-control" placeholder="Enter API Key" required>
+            <button class="btn btn-primary" type="submit">Add Key</button>
+        </div>
+    </form>
+
+    <h3>Stored API Keys</h3>
+    <ul class="list-group">
+        <% keyValues.forEach(function(item) { %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="fw-bold"><%= item.key %></span>
+                    <br>
+                    <form action="/toggle-status" method="POST" style="display: inline;">
+                        <input type="hidden" name="apiKey" value="<%= item.key %>">
+                        <button type="submit" class="btn btn-sm <%= item.value === 'active' ? 'btn-success' : 'btn-secondary' %>">
+                            Status: <%= item.value %>
+                        </button>
+                    </form>
+                </div>
+                <form action="/delete-key" method="POST" style="display: inline;">
+                    <input type="hidden" name="apiKey" value="<%= item.key %>">
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this API key?')">
+                        Delete
+                    </button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+
+    <script>
+        // Generate a time-based UUID and set it as default value
+        function generateTimeBasedUUID() {
+            const timestamp = Date.now();
+            const randomPart = Math.random().toString(36).substring(2, 15);
+            const uuid = `${timestamp}-${randomPart}`;
+            return uuid;
+        }
+
+        // Set the default value when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const apiKeyInput = document.getElementById('apiKeyInput');
+            apiKeyInput.value = generateTimeBasedUUID();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  redis-api-manager:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - REDIS_HOST=host.docker.internal
+      - REDIS_PORT=6379
+    restart: unless-stopped
+volumes:
+  redis_data:

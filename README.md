@@ -17,8 +17,8 @@ A web-based management interface for creating, viewing, and managing API keys st
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   Client App    │───▶│  Nginx API      │───▶│  Backend       │
-│   (with API    │    │  Shield         │    │  Service       │
-│    key)        │    │                 │    │                │
+│   (with API     │    │  Shield         │    │  Service       │
+│    key)         │    │                 │    │                │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
                                 │
                                 ▼

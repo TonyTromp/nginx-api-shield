@@ -30,7 +30,7 @@ A web-based management interface for creating, viewing, and managing API keys st
                                 │
                        ┌─────────────────┐
                        │ Redis Key       │
-                       │ Manager        │
+                       │ Manager         │
                        └─────────────────┘
 ```
 

@@ -1,0 +1,23 @@
+# WordPress
+wordpress-plugin/.DS_Store
+*.log
+
+# Docker volumes
+wordpress-data/
+db-data/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Backup files
+*.bak
+*.backup
+

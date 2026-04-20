@@ -1,0 +1,15 @@
+# OpenClaw runtime state — do not commit
+config/agents/
+config/canvas/
+config/credentials/
+config/devices/
+config/identity/
+config/logs/
+config/tasks/
+config/workspace/
+config/openclaw.json*
+config/update-check.json
+config/exec-approvals.json
+
+# Keep
+!config/nginx/

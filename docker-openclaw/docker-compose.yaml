@@ -1,0 +1,20 @@
+services:
+  openclaw:
+    image: ghcr.io/openclaw/openclaw:latest
+    container_name: openclaw
+    ports:
+      - "18789:18789"    # Web UI
+      - "18791:18791"    # API
+    volumes:
+      - ./config:/home/node/.openclaw
+      - ./workspace:/workspace  # Agent workspace
+    environment:
+      # Connect to host Ollama (macOS Docker Desktop)
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - OLLAMA_API_KEY=ollama-local
+      # Disable tools completely
+      - OPENCLAW_TOOLS_ENABLED=false
+      - OPENCLAW_AGENT_TOOLS=false
+      # Your GPT-OSS model from existing config
+      - PRIMARY_MODEL=qwen3.5:9b
+    restart: unless-stopped
